@@ -1,13 +1,40 @@
 const jwt = require('jsonwebtoken')
+const asyncHandler = require('express-async-handler')
+const User = require('../models/userModel')
 
-const authorization = (req, res, next) => {
-  if (!req.headers.authorization) {
-    res.status(401)
-    throw new Error('Not authorized')
+const authorization = asyncHandler(async (req, res, next) => {
+  let token
+
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer')
+  ) {
+    try {
+      token = req.headers.authorization.split(' ')[1]
+
+      const decoded = jwt.verify(token, process.env.SECRET)
+
+      req.user = await User.findById(decoded.id).select('-password -__v')
+
+      next()
+    } catch (error) {
+      console.log(error)
+
+      if (error.name === 'TokenExpiredError') {
+        res.status(401)
+        throw new Error('Token expired. You need to login again')
+      }
+
+      res.status(401)
+      throw new Error('Not authorized')
+    }
   }
 
-  next()
-}
+  if (!token) {
+    res.status(401)
+    throw new Error('Token not passed')
+  }
+})
 
 module.exports = {
   authorization,
