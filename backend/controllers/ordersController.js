@@ -29,11 +29,20 @@ const createOrder = asyncHandler(async (req, res) => {
     throw new Error('Listing not found')
   }
 
-  const price = nights * people
+  const price = nights * people * parseInt(listing.price)
 
-  console.log(listing.bathroom)
+  const order = await Order.create({
+    title: listing.name,
+    iamge: listing.images.picture_url,
+    people,
+    nights,
+    price,
+    pricePerNight: listing.price,
+    listing: listing._id,
+    user: req.user.id,
+  })
 
-  res.status(200).json({ listing })
+  res.status(200).json({ order })
 })
 
 module.exports = {

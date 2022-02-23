@@ -12,13 +12,14 @@ const orderSchema = mongoose.Schema({
     required: [true, 'Please enter number of nights'],
   },
   price: Number,
+  pricePerNight: Number,
   status: {
     type: String,
     enum: ['New', 'Pending', 'Paid', 'Cancelled'],
     default: 'New',
   },
   listing: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     ref: 'Listing',
   },
   user: {
