@@ -29,7 +29,7 @@ const createOrder = asyncHandler(async (req, res) => {
     throw new Error('Listing not found')
   }
 
-  const price = nights * people * parseInt(listing.price)
+  const price = nights * people * parseFloat(listing.price)
 
   const order = await Order.create({
     title: listing.name,
@@ -45,7 +45,25 @@ const createOrder = asyncHandler(async (req, res) => {
   res.status(200).json({ order })
 })
 
+const deleteOrder = asyncHandler(async (req, res) => {
+  const { id: userId } = req.user
+  const { id: orderId } = req.params
+
+  const order = await Order.findOneAndDelete({
+    _id: orderId,
+    user: userId,
+  })
+
+  if (!order) {
+    res.status(400)
+    throw new Error('Order does not exist')
+  }
+
+  res.status(200).json({ order })
+})
+
 module.exports = {
   getOrders,
   createOrder,
+  deleteOrder,
 }
