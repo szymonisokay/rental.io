@@ -4,14 +4,18 @@ const Listing = require('../models/listingModel')
 const Order = require('../models/orderModel')
 
 const getOrders = asyncHandler(async (req, res) => {
-  const listings = await Listing.find({ user: req.user.id })
+  const orders = await Order.find({ user: req.user.id })
+    .populate({
+      path: 'listing',
+    })
+    .populate({ path: 'user', select: '-__v -password' })
 
-  if (!listings) {
+  if (!orders) {
     res.status(400)
     throw new Error('Nothing found')
   }
 
-  res.status(200).json({ listings })
+  res.status(200).json({ orders })
 })
 
 const createOrder = asyncHandler(async (req, res) => {
