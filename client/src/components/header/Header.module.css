@@ -5,10 +5,10 @@
   width: 100%;
   height: 100px;
   background: var(--dark);
-  padding: 0 20px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #757389;
+  border-bottom: 1px solid rgb(199, 199, 199);
+  z-index: 999;
 }
 
 .logo {
@@ -50,6 +50,7 @@
   width: 100%;
   height: 100%;
   background: var(--dark);
+  mix-blend-mode: normal;
 }
 
 .navigation.expanded nav {
@@ -67,6 +68,14 @@
   transform: translateY(-50%);
 }
 
+.user {
+  position: relative;
+  padding: 10px;
+  border-radius: 25px;
+
+  transition: all 0.3s linear;
+}
+
 .user > div {
   display: flex;
   gap: 1rem;
@@ -79,6 +88,8 @@
   border-radius: 100%;
   object-fit: cover;
   border: 2px solid var(--white);
+
+  transition: border-color 0.3s ease-in-out;
 }
 
 .user .user_details {
@@ -89,6 +100,8 @@
 .user .user_details span {
   font-size: 12px;
   color: var(--white);
+
+  transition: color 0.3s ease-in-out;
 }
 
 .user .user_details .user_details__name {
@@ -98,6 +111,68 @@
 .icon {
   color: #fff;
   cursor: pointer;
+}
+
+.user .user_submenu {
+  visibility: hidden;
+  opacity: 0;
+  background: var(--white);
+  position: absolute;
+  top: 0%;
+  left: 0;
+  width: 100%;
+  border-radius: 10px;
+
+  transition: visibility 0s, opacity 0.3s, border-radius 0.3s linear;
+}
+
+.user .user_submenu.opened {
+  visibility: visible;
+  opacity: 1;
+  top: 100%;
+  border-radius: 0 0 10px 10px;
+}
+
+.user .user_submenu ul {
+  width: 100%;
+}
+
+.user .user_submenu li a {
+  padding: 10px 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 14px;
+}
+
+.user .user_submenu li:not(.user .user_submenu li:last-of-type) {
+  border-bottom: 1px solid rgb(199, 199, 199);
+}
+
+.user .user_submenu li .icon {
+  font-size: 20px;
+}
+
+.user .icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+.user.opened {
+  background: var(--white);
+  border-radius: 25px 25px 0 0;
+}
+
+.user.opened .open_submenu {
+  transform: rotate(-180deg);
+}
+
+.user.opened span,
+.user.opened .icon {
+  color: var(--dark);
+}
+
+.user.opened img {
+  border-color: var(--dark);
 }
 
 @media (min-width: 768px) {
