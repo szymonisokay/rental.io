@@ -8,6 +8,8 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
 import SettingsIcon from '@mui/icons-material/Settings'
 import LogoutIcon from '@mui/icons-material/Logout'
 
+import { Link } from 'react-router-dom'
+
 const Header = () => {
   const [expanded, setExpanded] = useState(false)
   const [userSubmenuOpened, setUserSubmenuOpened] = useState(false)
@@ -24,16 +26,18 @@ const Header = () => {
     <header className={styles.header}>
       <div className='container'>
         <div className={styles.logo}>
-          rental<span>.io</span>
+          <Link to='/'>
+            rental<span>.io</span>
+          </Link>
         </div>
         <div className={`${styles.navigation} ${expanded && styles.expanded} `}>
           <nav>
             <ul>
               <li>
-                <a href='#'>search</a>
+                <Link to='/search'>search</Link>
               </li>
               <li>
-                <a href='#'>offers</a>
+                <Link to='/offers'>offers</Link>
               </li>
             </ul>
           </nav>

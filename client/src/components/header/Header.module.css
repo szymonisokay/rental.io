@@ -17,7 +17,7 @@
   font-weight: 700;
 }
 
-.logo > span {
+.logo span {
   color: var(--accent);
 }
 

@@ -1,0 +1,37 @@
+.input {
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  outline: none;
+  width: 100%;
+
+  transition: border-color 0.3s ease-in-out;
+}
+
+.input:hover,
+.input:focus {
+  border-color: var(--accent);
+}
+
+.country_list {
+  position: absolute;
+  width: 100%;
+  background: #fff;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.no_match {
+  padding: 10px;
+}
+
+.country_list__item {
+  padding: 10px;
+  cursor: pointer;
+
+  transition: background-color 0.2s ease-in-out;
+}
+
+.country_list__item:hover {
+  background-color: rgb(233, 233, 233);
+}
