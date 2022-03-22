@@ -4,7 +4,6 @@ import styles from './Listings.module.css'
 import MapIcon from '@mui/icons-material/Map'
 
 const SingleListing = ({ listing }) => {
-  console.log(listing)
   return (
     <div className={styles.listing}>
       <img src={listing.images.picture_url} alt={listing.name} />

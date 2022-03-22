@@ -9,9 +9,14 @@ const URL = 'http://localhost:5000/api/listings'
 
 export const getListings = createAsyncThunk(
   'listings/getListings',
-  async ({ limit }) => {
+  async ({
+    limit = 12,
+    sort = 'default',
+    searchParams = { dest: '', arrival: '', departure: '', people: '' },
+  }) => {
+    console.log(limit, sort, searchParams)
     return await axios
-      .get(`${URL}?limit=${limit}`)
+      .get(`${URL}?limit=${limit}&sort=${sort}&dest=${searchParams.dest}`)
       .then((res) => res.data.listings)
   }
 )

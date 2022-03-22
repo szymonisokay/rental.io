@@ -33,10 +33,10 @@ const Header = () => {
         <div className={`${styles.navigation} ${expanded && styles.expanded} `}>
           <nav>
             <ul>
-              <li>
+              <li onClick={() => setExpanded(false)}>
                 <Link to='/search'>search</Link>
               </li>
-              <li>
+              <li onClick={() => setExpanded(false)}>
                 <Link to='/offers'>offers</Link>
               </li>
             </ul>
