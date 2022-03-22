@@ -19,7 +19,6 @@ const HomeSearchTerms = () => {
   }
 
   const navigateToSearch = () => {
-    console.log(searchState)
     navigate(
       `/search?dest=${searchState.destination}&arrival=${searchState.arrival}&departure=${searchState.departure}&people=${searchState.numberOfPeople}`
     )

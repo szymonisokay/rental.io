@@ -14,7 +14,6 @@ export const getListings = createAsyncThunk(
     sort = 'default',
     searchParams = { dest: '', arrival: '', departure: '', people: '' },
   }) => {
-    console.log(limit, sort, searchParams)
     return await axios
       .get(`${URL}?limit=${limit}&sort=${sort}&dest=${searchParams.dest}`)
       .then((res) => res.data.listings)
