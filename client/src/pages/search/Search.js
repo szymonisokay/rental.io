@@ -24,12 +24,6 @@ const Search = () => {
     dispatch(getListings({ searchParams }))
   }, [dispatch, searchParams])
 
-  const onLoadMore = () => {
-    let limit = 12
-    dispatch(getListings({ limit, searchParams }))
-    limit += 12
-  }
-
   return (
     <div
       className='container'
@@ -41,7 +35,6 @@ const Search = () => {
           <Sort setSortOption={setSortOption} />
         </div>
         <Listings limit={12} />
-        <button onClick={onLoadMore}>Load more</button>
       </div>
     </div>
   )
